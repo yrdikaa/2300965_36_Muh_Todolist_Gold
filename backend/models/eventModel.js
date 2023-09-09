@@ -16,7 +16,15 @@ class EventModel {
   }
 
   async update(id, { event_name, klik = false }) {
-    const updatedEvent = { event_name, klik };
+    const searchEvent = await db(this.tableName)
+      .select("*")
+      .where({ id })
+      .first();
+
+    const updatedEvent = {
+      event_name: event_name || searchEvent.event_name,
+      klik,
+    };
     const query = await db(this.tableName)
       .where({ id })
       .update(updatedEvent)
@@ -25,16 +33,12 @@ class EventModel {
   }
 
   async deleteEvent(id) {
-    const query = await db(this.tableName)
-      .where({ id })
-      .del()
-      .returning("*");
+    const query = await db(this.tableName).where({ id }).del().returning("*");
     return query;
   }
 }
 
 module.exports = EventModel;
-
 
 // // Get all events
 // async function getAllEvents() {

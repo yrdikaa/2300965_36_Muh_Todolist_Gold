@@ -1,7 +1,8 @@
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
-let editIndex = -1;
 const todoForm = document.querySelector(".input-section");
 const todoInput = document.querySelector("#todoInput");
+const editEvent = document.getElementById("edit_event");
+const editModal = document.getElementById("editModal")
 const todoList = document.querySelector(".todo-list");
 const addButton = document.querySelector("#addBtn");
 const updateButton = document.getElementById("update-button");
@@ -9,14 +10,21 @@ const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
 const todo_main = document.querySelector(".todos");
 
-function saveTodos() {
-  localStorage.setItem("todos", JSON.stringify(todos));
-}
+// function saveTodos() {
+//   localStorage.setItem("todos", JSON.stringify(todos));
+// }
 
-function renderTodos() {
+async function renderTodos() {
   todoList.innerHTML = "";
+  var requestOptions = {
+    method: "GET",
 
-  todos.forEach((todo, index) => {
+  };
+
+  const response = await fetch("http://localhost:5500/api/v1/event/all", requestOptions)
+    .then((response) => response.json())
+   
+  response.events.forEach((todo, index) => {
     const li = document.createElement("li");
     li.className = "li";
 
@@ -24,25 +32,25 @@ function renderTodos() {
     checkbox.className = "form-check-input";
     checkbox.type = "checkbox";
     checkbox.value = "option1";
-    checkbox.checked = todo.completed;
-    checkbox.addEventListener("change", () => toggleTodoCompleted(index));
+    checkbox.checked = todo.klik;
+    checkbox.addEventListener("change", () => toggleTodoCompleted(todo));
 
     const label = document.createElement("label");
     label.className = "form-check-label";
 
     const spanText = document.createElement("span");
     spanText.className = "todo-text";
-    spanText.textContent = `${todo.text} (${todo.date})`;
+    spanText.textContent = `${todo.event_name}`;
 
     const deleteButton = document.createElement("span");
     deleteButton.className = "span-button";
     deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    deleteButton.addEventListener("click", () => deleteTodo(index));
+    deleteButton.addEventListener("click", () => deleteTodo(todo.id));
 
     const editButton = document.createElement("span");
     editButton.className = "span-button";
     editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
-    editButton.addEventListener("click", () => editTodo(index));
+    editButton.addEventListener("click", () => editTodo(todo));
 
     li.appendChild(checkbox);
     li.appendChild(label);
@@ -54,44 +62,33 @@ function renderTodos() {
   });
 }
 
+// kirim
 
 async function addTodo() {
-  const todoText = todoInput.value.trim();
+  const todoInput = document.querySelector("#todoInput");
+  const todoText = todoInput.value;
 
   if (todoText !== "") {
     const currentDate = new Date();
     try {
-      const response = await fetch('http://localhost:5500/api/v1/event/new', {
+      const response = await fetch(`http://localhost:5500/api/v1/event/new`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ todoText })
+        body: JSON.stringify({ event_name: todoText }),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
 
       // Assuming the rest of the logic should be executed regardless of the fetch outcome
-      if (editIndex === -1) {
-        todos.push({
-          text: todoText,
-          completed: false,
-          date: currentDate.toLocaleString(),
-        });
-      } else {
-        todos[editIndex].text = todoText;
-        todos[editIndex].date = currentDate.toLocaleString();
-        editIndex = -1;
-        addButton.style.display = "inline";
-        updateButton.style.display = "none";
-      }
+      
     } catch (error) {
       console.error("Error adding todo:", error);
     }
 
-    saveTodos();
     renderTodos();
     todoInput.value = "";
   }
@@ -99,87 +96,96 @@ async function addTodo() {
   return false;
 }
 
-function toggleTodoCompleted(index) {
-  todos[index].completed = !todos[index].completed;
-  saveTodos();
-  renderTodos();
-}
+// Toggle
+function toggleTodoCompleted(todo) {
+  var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
 
-addButton.onclick = addTodo
+var raw = JSON.stringify({
+  "klik": !todo.klik
+});
 
-function deleteTodo(index) {
-  todos.splice(index, 1);
-  saveTodos();
-  renderTodos();
-}
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
 
-function editTodo(index) {
-  const todoText = todos[index].text;
-  todoInput.value = todoText;
-  editIndex = index;
-  addButton.style.display = "none";
-  updateButton.style.display = "inline";
-}
+fetch(`http://localhost:5500/api/v1/event/update/${todo.id}`, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error))
+  .finally(()=> {
 
-function searchTodo() {
-  const searchQuery = searchInput.value.trim();
-  if (searchQuery !== "") {
-    const searchResults = todos.filter((todo) =>
-      todo.text.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    renderSearchResults(searchResults);
-  } else {
     renderTodos();
-  }
+  })
 }
 
-function renderSearchResults(results) {
-  todoList.innerHTML = "";
+addButton.onclick = addTodo;
 
-  if (results.length > 0) {
-    results.forEach((todo, index) => {
-      const li = document.createElement("li");
-      li.className = "li";
+//Delete
+async function deleteTodo(id) {
+ 
+  var requestOptions = {
+    method: 'DELETE',
 
-      const checkbox = document.createElement("input");
-      checkbox.className = "form-check-input";
-      checkbox.type = "checkbox";
-      checkbox.value = "option1";
-      checkbox.checked = todo.completed;
-      checkbox.addEventListener("change", () => toggleTodoCompleted(index));
+  };
+  
+ await fetch(`http://localhost:5500/api/v1/event/delete/${id}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error)) 
+    .finally(()=>{
+      renderTodos();
+    })
 
-      const label = document.createElement("label");
-      label.className = "form-check-label";
+  
+}
+// EDIT EVENT 
+// Edit
+function editTodo(id) {
+  // Mendapatkan teks dari input; Anda mungkin perlu menyesuaikan selector ini
+  const todoText = document.querySelector("#edit_event").value;
 
-      const spanText = document.createElement("span");
-      spanText.className = "todo-text";
-      spanText.textContent = `${todo.text} (${todo.date})`;
+  // Cek jika todoText kosong, jangan lanjutkan
+  
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
 
-      const deleteButton = document.createElement("span");
-      deleteButton.className = "span-button";
-      deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-      deleteButton.addEventListener("click", () => deleteTodo(index));
+  var raw = JSON.stringify({ event_name: todoText });
 
-      const editButton = document.createElement("span");
-      editButton.className = "span-button";
-      editButton.innerHTML = '<i class="fa-solid fa-pen"></i>';
-      editButton.addEventListener("click", () => editTodo(index));
+  var requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
 
-      li.appendChild(checkbox);
-      li.appendChild(label);
-      li.appendChild(spanText);
-      li.appendChild(deleteButton);
-      li.appendChild(editButton);
-
-      todoList.appendChild(li);
+  fetch(`http://localhost:5500/api/v1/event/update/${id.id}`, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed with status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error))
+    .finally(() => {
+      renderTodos();
     });
-  } else {
-    todo_main.innerHTML = `<img class="face" src="asetes/thinking.png" alt="">
-                            <h1 class="not-found"> NOT FOUND</h1>`;
-  }
 }
+
+
+// Close modal function
+function closeEditModal() {
+editModal.style.display = "none";
+editEvent.value = "";
+
+
+
 
 todoForm.addEventListener("submit", addTodo);
 updateButton.addEventListener("click", addTodo);
-searchButton.addEventListener("click", searchTodo);
 renderTodos();
+}
