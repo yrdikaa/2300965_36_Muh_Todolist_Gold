@@ -15,7 +15,7 @@ class EventModel {
     return query;
   }
 
-  async update(id, { event_name, klik = false }) {
+  async update(id, { event_name, klik = false}) {
     const searchEvent = await db(this.tableName)
       .select("*")
       .where({ id })
