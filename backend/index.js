@@ -11,15 +11,15 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Mock data (replace with actual database query)
-const events = [
-  { id: 1, title: 'Event 1', description: 'Description 1' },
-  { id: 2, title: 'Event 2', description: 'Description 2' },
-  // ... more events
-];
+// const events = [
+//   { id: 1, title: 'Event 1', description: 'Description 1' },
+//   { id: 2, title: 'Event 2', description: 'Description 2' },
+//   // ... more events
+// ];
 app.use(eventRoutes)
 // Endpoint to get events
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/src'));
 });
 
 app.get('/events', (req, res) => {

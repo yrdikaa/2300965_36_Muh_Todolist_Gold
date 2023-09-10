@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .navbar {
+    background-color: #967E76;
+  }
+  
+  .navbar-brand {
+    color: #fff;
+    font-size: 24px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #fff;
+  }
+  
+  .jumbotron {
+    background: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .jumbotron h1 {
+    font-size: 48px;
+    color: #fff;
+  }
+  
+  .jumbotron p {
+    color: #fff;
+  }
+  
+  .btn-primary {
+    margin-top: 20px;
+  }
+  
+  #about {
+    background-color: #ffffff;
+    padding: 80px 0;
+  }
+  
+  #about h2 {
+    margin-bottom: 20px;
+  }
+  
+  #about p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .img-fluid {
+    width: 600px;
+    max-width: 800px;
+    height: auto; 
+    margin-left: 100px;
+    margin-bottom: 20px;
+  }
+  
+  #news {
+    background-color: #ffffff;
+    padding: 80px 0;
+  }
+  
+  #news h2 {
+    margin-bottom: 20px;
+  }
+  
+  .news-item {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .news-item img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 10px;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .news-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  .news-item h4 {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .news-item p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  
+  #contact {
+    padding: 80px 0;
+  }
+  
+  #contact h2 {
+    margin-bottom: 20px;
+  }
+  
+  #contact form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #contact form .form-control {
+    margin-bottom: 15px;
+  }
+  
+  #contact form .btn {
+    background-color: #333;
+    border-color: #333;
+  }
+  
+  #contact form .btn:hover {
+    background-color: #555;
+    border-color: #555;
+  }
+  
+  @media (max-width: 768px) {
+    .img-fluid {
+      margin-left: 0;
+      width: 100%;
+    }
+  }

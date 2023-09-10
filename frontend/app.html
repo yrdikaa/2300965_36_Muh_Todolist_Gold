@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">EduAdmin</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#news">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div
+      class="jumbotron d-flex align-items-center"
+      style="background-image: url(img/background.applist.png)"
+    >
+      <div class="container text-center">
+        <h1>Welcome to Admin Education</h1>
+        <p>Your partner in efficiently managing student admissions.</p>
+        <a href="./student/index.html" class="btn btn-primary btn-lg"
+          >Get Started</a
+        >
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>About Us</h2>
+            <p>
+              Welcome to Admin Education, your partner in efficiently managing
+              student admissions. Our team of administrators specializes in
+              overseeing new student enrollment with precision and dedication,
+              ensuring a seamless experience for educational institutions. Our
+              Responsibilities: Our primary role involves handling new student
+              admissions. From capturing vital information to creating
+              comprehensive student profiles, we manage the entire enrollment
+              process. Additionally, we maintain up-to-date records, removing
+              student data when necessary due to completion of studies or
+              transfers. Data Security: Data security is our top priority. We
+              utilize advanced security measures to protect sensitive student
+              information, adhering to strict data protection regulations. Your
+              students' personal and academic details are always safe with us.
+              Collaborative Approach: Admin Education believes in collaboration.
+              Our user-friendly interface and customizable services cater to
+              your institution's unique needs. We aim to simplify admissions,
+              benefiting both students and staff. In Conclusion: As education
+              evolves, administrators play a pivotal role. Admin Education is at
+              the forefront, offering streamlined solutions for new student
+              admissions. Our dedication to accuracy, efficiency, and data
+              security makes us a trusted partner for institutions worldwide.
+              Join us in redefining administrative education and supporting the
+              growth of educational institutions globally.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img src="img/EduAdmin.png" alt="About Us Image" class="img-fluid"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-5">
+      <div class="container text-center">
+        <h2>Latest News</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="news-item">
+              <img src="img/news-1.png" alt="News 1" class="img-fluid" />
+              <h4>News Title 1</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="news-item">
+              <img src="img/news-2.png" alt="News 2" class="img-fluid" />
+              <h4>News Title 2</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="news-item">
+              <img src="img/news-3.png" alt="News 3" class="img-fluid" />
+              <h4>News Title 3</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5" style="background-color: #333">
+      <div class="container text-center">
+        <h2 class="text-white">Contact Us</h2>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <form>
+              <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Your Name"/>
+              </div>
+              <div class="mb-3">
+                <input type="email" class="form-control" placeholder="Your Email"/>
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control" placeholder="Your Message" rows="5"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
