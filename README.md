@@ -32,11 +32,12 @@ Terminal Bash:
 
 ## Usage Server
 1. Frontend: 
-Server: Utilizing 'serve' to run the frontend application.
-How to Start : Npm run Start 
+* Server: Utilizing 'serve' to run the frontend application.
+- How to Start : Npm run Start 
 You should see the frontend application running at the provided address, typically http://localhost:3000.
-2. Backend: Node.JS
-How to Start : Npm Start 
+2. Backend: 
+* Node.JS
+- How to Start : Npm Start 
 You should see the frontend application running at the provided address, typically http://localhost:5500.
 
 
