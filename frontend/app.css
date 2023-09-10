@@ -1,13 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-size: cover;
     background-repeat: no-repeat;
   }
-  
   .navbar {
-    background-color: #967E76;
+    background-color: #241f1d;
   }
   
   .navbar-brand {

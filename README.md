@@ -18,6 +18,7 @@ Before getting started, make sure you have met the following requirements:
   you can see my knexfile.js for see my data base and you can change
 - if you "change" data base don't forget to running migrations and seed
 
+
 ## How to Run Migration and Seed
   1. first running migration: npx knex migrate:latest
   2. second running Seed : npx knex seed:run
@@ -29,20 +30,23 @@ Terminal Bash:
    3. cd backend
    4. npm install
 
-## Usage
-  1. cd backend
-  2. npm start
-The server will run on http://localhost:5500.
-Open your browser and access the frontend at http://localhost:5500.
-You can click "Get Start" for see student data's
+## Usage Server
+1. Frontend: 
+Server: Utilizing 'serve' to run the frontend application.
+How to Start : Npm run Start 
+You should see the frontend application running at the provided address, typically http://localhost:3000.
+2. Backend: Node.JS
+How to Start : Npm Start 
+You should see the frontend application running at the provided address, typically http://localhost:5500.
+
 
 ## API Endpoints
 The following API endpoints are available:\
-  1. GET /api/v1/all: Get a list of all students.
-  2. POST /api/v1/new: Create a new student.
-  3. PUT /api/v1/update/:id: Update a student by ID.
-  4. DELETE /api/v1/delete/:id: Delete a student by ID.
-You can use these endpoints to interact with the student data.
+  1. GET /api/v1/all: Get a list of all Todos.
+  2. POST /api/v1/new: Create a new Todo.
+  3. PUT /api/v1/update/:id: Update a Todo by ID.
+  4. DELETE /api/v1/delete/:id: Delete a Todo by ID.
+You can use these endpoints to interact with the Todo data.
 
 ## Postman Documenter
 https://documenter.getpostman.com/view/28279095/2s9YC1Wu8f

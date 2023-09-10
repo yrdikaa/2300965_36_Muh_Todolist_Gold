@@ -8,7 +8,7 @@ const cors = require('cors')
 app.use(cors({origin:"*"}))
 app.use(bodyParser.json())
 // Serve static files from the 'public' folder
-app.use(express.static(path.join(__dirname, '../frontend')));
+// app.use(express.static(path.join(__dirname, '../frontend/todo')));
 
 // Mock data (replace with actual database query)
 // const events = [
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(eventRoutes)
 // Endpoint to get events
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/src'));
+  res.sendFile(path.join(__dirname, '../frontend'));
 });
 
 app.get('/events', (req, res) => {
